@@ -35,7 +35,7 @@ def touchopen(filename, *args, **kwargs):
 def get_user_list_from_file():
 	# Gets the user list from the file stored on disk (as opposed to the API)
 	print 'Getting stored user list...'
-	with touchopen('hipchat2-users.txt') as old_file:
+	with touchopen('hipchat-users.txt') as old_file:
 		lines = [line.rstrip('\n') for line in old_file]
 	return lines
 
@@ -45,7 +45,7 @@ def get_current_hipchat_users():
 	response = hc.users(max=500)
 	user_list = response['items']
 	names_list = []
-	output_file = open('hipchat2-users-new.txt', 'w')
+	output_file = open('hipchat-users-new.txt', 'w')
 	for i, name in enumerate(d['name'] for d in user_list):
 		output_file.write(name.encode('utf-8').strip())
 		names_list.append(name.encode('utf-8').strip())
